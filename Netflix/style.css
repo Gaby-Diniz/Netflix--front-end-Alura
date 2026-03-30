@@ -1,0 +1,295 @@
+/* Reset simples para evitar espaçamentos indesejados e garantir que o box-sizing seja consistente */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilo base do corpo do site (fundo escuro, texto claro) */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #141414;
+  color: #ffffff;
+  line-height: 1.6;
+  font-size: 16px; /* Base para rem */
+}
+
+/* Cabeçalho visível */
+header {
+  display: block;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.theme-toggle-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#theme-toggle {
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.32);
+  color: #ffffff;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  transition: all 0.25s ease;
+}
+
+#theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Ajusta o conteúdo para ocupar o espaço */
+main {
+  margin-top: 0;
+}
+body.dark-mode {
+  background-color: #141414;
+  color: #ffffff;
+}
+
+body.light-mode {
+  background-color: #f4f4f4;
+  color: #1a1a1a;
+}
+
+body.dark-mode header,
+body.light-mode header {
+  color: inherit;
+}
+
+
+
+/* Conteúdo principal centralizado e com largura máxima */
+main {
+  max-width: min(1200px, 90vw); /* Responsivo */
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 2rem); /* Responsivo */
+  min-height: calc(100vh - 160px); /* Ajusta para header e footer */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* Estilo do título da seção (Quem está assistindo) */
+section h2 {
+  font-size: clamp(1.3rem, 3vw, 1.8rem); /* Menor e responsivo */
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+
+  letter-spacing: 2px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Grid responsivo para os perfis */
+.profiles {
+  display: flex; /* Mudando para flexbox para garantir alinhamento horizontal */
+  flex-wrap: nowrap; /* Sem quebra de linha */
+  justify-content: center; /* Centralizar os perfis */
+  align-items: center;
+  gap: 1.5rem; /* Gap fixo */
+  width: min(1200px, 100%);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+  overflow-x: auto;
+}
+
+/* Evita scroll horizontal global na tela pequena */
+body {
+  overflow-x: hidden;
+}
+
+/* Estilos de cada card de perfil com hover */
+.profile {
+  list-style: none;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+  flex-shrink: 0; /* Impede que os perfis encolham */
+  min-width: 0; /* Permite que os perfis sejam menores se necessário */
+}
+
+/* Aumento e brilho ao passar o mouse no card */
+.profile:hover {
+  filter: brightness(1.2); /* Mantém apenas o brilho, remove o scale */
+}
+
+/* Alinhamento vertical do conteúdo do card de perfil */
+.profile figure {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Estilo da imagem do perfil com borda */
+.profile img {
+  width: 120px; /* Tamanho fixo menor para garantir alinhamento */
+  height: 120px; /* Tamanho fixo menor para garantir alinhamento */
+  border-radius: 12%;
+}
+
+/* Interações de hover no avatar */
+.profile img:hover {
+  border-color: var(--profile-hover-color);
+}
+
+/* Texto do nome do perfil com estilo e transição de cor */
+.profile figcaption {
+  font-size: clamp(0.9rem, 2.5vw, 1.3rem); /* Responsivo */
+  font-weight: 600;
+  color: #b11616;
+  text-align: center;
+  text-transform: uppercase !important;
+  letter-spacing: 1.5px;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+:root {
+  --profile-hover-color: #ffffff; /* valor padrão dark mode */
+}
+
+/* Cor do nome do perfil muda no hover */
+.profile:hover figcaption {
+  color: var(--profile-hover-color);
+}
+
+/* Remove decoração de texto dos links dos perfis */
+.perfil {
+  text-decoration: none;
+}
+
+/* Rodapé com fundo escuro e borda vermelha */
+footer {
+  background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+  color: #666666;
+  text-align: center;
+  padding: clamp(1rem, 4vw, 2rem); /* Responsivo */
+  margin-top: 4rem;
+  font-size: clamp(0.8rem, 2vw, 0.9rem); /* Responsivo */
+  letter-spacing: 0.5px;
+}
+
+/* Peso do texto do footer */
+footer p {
+  font-weight: 300;
+}
+
+/* Media query para telas grandes (desktop) */
+@media (min-width: 1200px) {
+  .profiles {
+    grid-template-columns: repeat(3, 1fr); /* Máximo 3 colunas */
+  }
+}
+
+/* Media query para telas médias (tablet) */
+@media (max-width: 768px) {
+  header {
+    padding: 1.5rem 1rem;
+  }
+
+  main {
+    margin: 2rem auto;
+  }
+
+  .profiles {
+    gap: 0.8rem; /* Gap menor no tablet */
+  }
+
+  .profile img {
+    width: 100px; /* Tamanho fixo menor no tablet */
+    height: 100px;
+  }
+
+
+  .profile img:hover {
+    border-color: var(--profile-hover-color);
+  }
+}
+
+/* Media query para telas pequenas (celular) */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  header {
+    padding: 1rem 0.5rem;
+  }
+
+  main {
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+  }
+
+  section h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .profiles {
+    flex-wrap: nowrap; /* Sempre horizontal */
+    justify-content: flex-start;
+    gap: 0.6rem;
+    padding: 0 0.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .profile img {
+    width: 70px; /* Tamanho fixo bem menor no celular */
+    height: 70px;
+  }
+
+  .profile figure {
+    gap: 0.3rem;
+  }
+
+  .profile:hover {
+    transform: none;
+  }
+
+  .profile img:hover {
+    border-color: var(--profile-hover-color);
+  }
+
+  footer {
+    margin-top: 2rem;
+    padding: 1rem;
+  }
+}
+
+/* Media query para telas muito pequenas */
+@media (max-width: 360px) {
+  .profiles {
+    gap: 0.3rem;
+  }
+
+  .profile img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* Media query para telas extremamente pequenas */
+@media (max-width: 280px) {
+  .profiles {
+    flex-wrap: wrap; /* Permite quebra de linha apenas em telas minúsculas */
+    justify-content: space-around;
+  }
+
+  .profile img {
+    width: 40px;
+    height: 40px;
+  }
+}
